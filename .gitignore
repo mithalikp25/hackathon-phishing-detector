@@ -1,7 +1,12 @@
+# Virtual environment
+venv/
+
 # CSV Data Files (since too large for GitHub)
 *.csv
 phishing_dataset_clean.csv
 phishing_features.csv
+*.pkl
+*.json
 
 # Python
 __pycache__/
