@@ -351,3 +351,135 @@ print(f"\n   New model accuracy: {accuracy*100:.2f}%")
 print(f"   False positive rate: {fpr*100:.2f}%")
 print("\n   Now restart your API: python backend_api.py")
 print("="*70)
+
+
+
+# ======================================================================
+# RETRAINING MODEL WITH BETTER DATASET
+# ======================================================================
+
+# [1/6] Loading dataset...
+#    Downloading from HuggingFace (shawhin/phishing-site-classification)...
+#    ✅ Loaded 2100 URLs from HuggingFace
+#    Columns: ['text', 'labels']
+#    ✅ After cleaning: 2100 URLs with valid labels
+#    Label distribution: {0: 1054, 1: 1046}
+
+# [2/6] Adding verified legitimate URLs...
+#    Added 86 verified legitimate URLs
+#    Total URLs after combining: 2186
+#    Class distribution:
+#    Legitimate (0): 1140 (52.2%)
+#    Phishing (1):   1046 (47.8%)
+
+# [3/6] Extracting features from URLs...
+#    Processing 0/2186...
+#    ✅ Extracted features for 2186 URLs
+
+# [4/6] Preparing training data...
+#    Features: 43
+#    Samples: 2186
+
+#    Class distribution:
+#    Legitimate (0): 1140 (52.2%)
+#    Phishing (1):   1046 (47.8%)
+
+#    Training set: 1748
+#    Test set: 438
+
+# [5/6] Training Random Forest model...
+#    ✅ Model trained!
+
+# [6/6] Evaluating model...
+
+#    📊 Performance Metrics:
+#    Accuracy:  86.07%
+#    Precision: 88.21%
+#    Recall:    81.90%
+#    F1-Score:  84.94%
+
+#    Classification Report:
+#               precision    recall  f1-score   support
+
+#   Legitimate       0.84      0.90      0.87       228
+#     Phishing       0.88      0.82      0.85       210
+
+#     accuracy                           0.86       438
+#    macro avg       0.86      0.86      0.86       438
+# weighted avg       0.86      0.86      0.86       438
+
+
+#    Confusion Matrix:
+#    True Negatives (Legit correctly identified):  205
+#    False Positives (Legit marked as Phishing):   23
+#    False Negatives (Phishing marked as Legit):   38
+#    True Positives (Phishing correctly caught):   172
+
+#    ⚠️ False Positive Rate: 10.09%
+
+# ======================================================================
+# TESTING ON KNOWN URLs
+# ======================================================================
+
+# Testing individual URLs:
+# C:\Users\Geetha\OneDrive\Desktop\hackathon-phishing-detector\venv\Lib\site-packages\sklearn\utils\validation.py:2749: UserWarning: X does not have valid feature names, but StandardScaler was fitted with feature names
+#   warnings.warn(
+
+# ✅ https://www.google.com
+#    Prediction: LEGITIMATE (99.4% confidence)
+#    Expected: Should be LEGITIMATE
+# C:\Users\Geetha\OneDrive\Desktop\hackathon-phishing-detector\venv\Lib\site-packages\sklearn\utils\validation.py:2749: UserWarning: X does not have valid feature names, but StandardScaler was fitted with feature names
+#   warnings.warn(
+
+# ✅ https://duckduckgo.com
+#    Prediction: LEGITIMATE (98.3% confidence)
+#    Expected: Should be LEGITIMATE
+# C:\Users\Geetha\OneDrive\Desktop\hackathon-phishing-detector\venv\Lib\site-packages\sklearn\utils\validation.py:2749: UserWarning: X does not have valid feature names, but StandardScaler was fitted with feature names
+#   warnings.warn(
+
+# ✅ https://www.facebook.com
+#    Prediction: LEGITIMATE (99.7% confidence)
+#    Expected: Should be LEGITIMATE
+# C:\Users\Geetha\OneDrive\Desktop\hackathon-phishing-detector\venv\Lib\site-packages\sklearn\utils\validation.py:2749: UserWarning: X does not have valid feature names, but StandardScaler was fitted with feature names
+#   warnings.warn(
+
+# ✅ https://github.com
+#    Prediction: LEGITIMATE (100.0% confidence)
+#    Expected: Should be LEGITIMATE
+# C:\Users\Geetha\OneDrive\Desktop\hackathon-phishing-detector\venv\Lib\site-packages\sklearn\utils\validation.py:2749: UserWarning: X does not have valid feature names, but StandardScaler was fitted with feature names
+#   warnings.warn(
+
+# ✅ http://192.168.1.1/login.php
+#    Prediction: PHISHING (91.7% confidence)
+#    Expected: Should be PHISHING
+# C:\Users\Geetha\OneDrive\Desktop\hackathon-phishing-detector\venv\Lib\site-packages\sklearn\utils\validation.py:2749: UserWarning: X does not have valid feature names, but StandardScaler was fitted with feature names
+#   warnings.warn(
+
+# ✅ http://secure-paypal-login.fake.com/verify
+#    Prediction: PHISHING (77.5% confidence)
+#    Expected: Should be PHISHING
+# C:\Users\Geetha\OneDrive\Desktop\hackathon-phishing-detector\venv\Lib\site-packages\sklearn\utils\validation.py:2749: UserWarning: X does not have valid feature names, but StandardScaler was fitted with feature names
+#   warnings.warn(
+
+# ✅ http://account-update-required.xyz/signin
+#    Prediction: PHISHING (78.5% confidence)
+#    Expected: Should be PHISHING
+
+# ======================================================================
+# SAVING MODEL
+# ======================================================================
+#    📦 Old model backed up as phishing_model_backup.pkl
+#    ✅ Model saved: phishing_model.pkl
+#    ✅ Scaler saved: feature_scaler.pkl
+#    ✅ Feature names saved: feature_names.pkl
+#    ✅ Metadata saved: model_metadata.pkl
+
+# ======================================================================
+# 🎉 RETRAINING COMPLETE!
+# ======================================================================
+
+#    New model accuracy: 86.07%
+#    False positive rate: 10.09%
+
+#    Now restart your API: python backend_api.py
+# ======================================================================
