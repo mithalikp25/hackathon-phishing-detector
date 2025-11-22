@@ -1,0 +1,41 @@
+# Core Backend (FastAPI)
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+pydantic==2.5.0
+
+# Core Frontend (Streamlit)
+streamlit==1.28.1
+plotly==5.18.0
+
+# Machine Learning
+scikit-learn==1.3.2
+joblib==1.3.2
+
+# Data Processing
+pandas==2.1.3
+numpy==1.26.2
+
+# Dataset Loading (removed strict version)
+datasets
+huggingface-hub
+
+# HTTP Requests
+requests==2.31.0
+urllib3==2.1.0
+
+# Testing and CLI
+rich==13.7.0
+
+# URL Processing
+tldextract
+
+# Additional utilities
+python-dateutil
+pytz
+certifi
+charset-normalizer
+idna
+
+# For feature extraction
+scipy==1.11.4
