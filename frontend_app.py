@@ -5,6 +5,7 @@ Beautiful UI for Phishing URL Detection
 
 import streamlit as st
 import requests
+import os
 import plotly.graph_objects as go
 import time
 from datetime import datetime
@@ -79,8 +80,9 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# API Configuration
-API_URL = "http://localhost:8000"
+
+# API Configuration - works in both local and production
+API_URL = os.getenv("BACKEND_URL", "https://hackathon-phishing-detector-api.onrender.com")
 
 # Initialize session state
 if 'analysis_history' not in st.session_state:
